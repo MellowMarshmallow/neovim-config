@@ -2,7 +2,7 @@ local options = {
     -- number
     number = true,
     relativenumber = true,
-    numberwidth = 2,
+    numberwidth = 1,
     wrap = false,
 
     -- color
@@ -12,6 +12,12 @@ local options = {
 
     -- copy-paste behavior
     clipboard = 'unnamedplus',
+
+    -- enable mouse
+    mouse = "a",
+
+    -- disable shada
+    shadafile = "NONE",
 
     -- buffer
     hidden = true,

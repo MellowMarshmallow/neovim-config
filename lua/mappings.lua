@@ -1,6 +1,25 @@
 local nest = require("nest")
 local wk = require("which-key")
 
+-- register groups name via which-key and apply via nest
+local register_groups = function(maps)
+    for _, map in pairs(maps) do
+        if map.name or map.prefix then
+            wk.register({ [map.prefix] = { name = map.name } })
+
+            for _, item in pairs(map) do
+                if type(item) == "table" then
+                    wk.register({
+                        [map.prefix .. item[1]] = item[2]
+                    })
+                end
+            end
+        end
+
+        nest.applyKeymaps(map)
+    end
+end
+
 local escapes = {
     { mode = "i", { "jk", "<Esc>" } },
     { mode = "t", { "jk", "<C-\\><C-N>" } },
@@ -20,18 +39,8 @@ local packer = {
     { "o", "<cmd>PackerConfig<cr>" },
 }
 
-local maps = { escapes, packer }
-
--- Add name to which-key and apply mapping using nest
-for _, map in pairs(maps) do
-    if map.name or map.prefix then
-        wk.register({
-            [map.prefix] = {
-                name = map.name,
-            },
-        })
-    end
-
-    nest.applyKeymaps(map)
-end
+register_groups({
+    escapes,
+    packer
+})
 
