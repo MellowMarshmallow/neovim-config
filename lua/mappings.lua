@@ -6,14 +6,6 @@ local register_groups = function(maps)
     for _, map in pairs(maps) do
         if map.name or map.prefix then
             wk.register({ [map.prefix] = { name = map.name } })
-
-            for _, item in pairs(map) do
-                if type(item) == "table" then
-                    wk.register({
-                        [map.prefix .. item[1]] = item[2]
-                    })
-                end
-            end
         end
 
         nest.applyKeymaps(map)
@@ -26,21 +18,39 @@ local escapes = {
 }
 
 local packer = {
-    name = "packer",
+    name = "Packer",
     prefix = "<leader>p",
     { "i", "<cmd>PackerInstall<cr>" },
-    { "S", "<cmd>PackerSource<cr>" },
-    { "s", "<cmd>PackerSync<cr>" },
-    { "u", "<cmd>PackerUpdate<cr>" },
+    { "s", "<cmd>PackerSync<cr>"    },
+    { "u", "<cmd>PackerUpdate<cr>"  },
     { "c", "<cmd>PackerCompile<cr>" },
     { "p", "<cmd>PackerProfile<cr>" },
-    { "t", "<cmd>PackerStatus<cr>" },
-    { "d", "<cmd>PackerClean<cr>" },
-    { "o", "<cmd>PackerConfig<cr>" },
+    { "t", "<cmd>PackerStatus<cr>"  },
+    { "d", "<cmd>PackerClean<cr>"   },
+}
+
+local lsp = {
+    name = "LSP",
+    prefix = "<leader>l",
+    { "i", "<cmd>LspInstallInfo<cr>"         }, -- install
+    { "r", "<cmd>LspRestart<cr>"             }, -- restart
+    { "s", "<cmd>LspInfo<cr>"                }, -- info
+    { "o", "<cmd>Lspsaga open_floaterm<cr>"  },
+    { "c", "<cmd>Lspsaga close_floaterm<cr>" },
+}
+
+local telescope = {
+    name = "Telescope",
+    prefix = "<leader>t",
+    { "t", "<cmd>Telescope<cr>"           },
+    { "b", "<cmd>Telescope buffers<cr>"   },
+    { "g", "<cmd>Telescope live_grep<cr>" },
 }
 
 register_groups({
     escapes,
-    packer
+    packer,
+    lsp,
+    telescope,
 })
 

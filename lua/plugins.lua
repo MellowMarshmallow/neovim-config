@@ -43,6 +43,20 @@ packer.startup(function(use)
         config = function() require("configs.lsp") end,
     }
 
+    use {
+        "glepnir/lspsaga.nvim",
+        requires = { "neovim/nvim-lspconfig" },
+        config = function()
+            require("lspsaga").init_lsp_saga({
+                finder_action_keys = {
+                    open = "i", quit = "q",
+                    split = "s", vsplit = "v",
+                    scroll_up = "<C-f>", scroll_down = "<C-b>"
+                },
+            })
+        end,
+    }
+
     -- mapping
     use {
         "LionC/nest.nvim"
