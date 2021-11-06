@@ -2,6 +2,8 @@ local modules = {
     "utils",
     "options",
     "plugins",
+    "mappings",
+    "theme",
 }
 
 for _, module in ipairs(modules) do
