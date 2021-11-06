@@ -10,9 +10,17 @@ packer.startup(function(use)
         config = function() require("configs.treesitter") end,
     }
 
+    use { "projekt0n/github-nvim-theme" }
+
+    use { "folke/tokyonight.nvim" }
+
+    -- file explorer
     use {
-        "projekt0n/github-nvim-theme",
-        config = function() require("configs.theme") end,
+        "kyazdani42/nvim-tree.lua",
+        requires = {
+            { "kyazdani42/nvim-web-devicons" },
+        },
+        config = function() require("nvim-tree").setup({}) end,
     }
 
     -- completion
@@ -33,6 +41,27 @@ packer.startup(function(use)
         "williamboman/nvim-lsp-installer",
         requires = { "neovim/nvim-lspconfig" },
         config = function() require("configs.lsp") end,
+    }
+
+    -- mapping
+    use {
+        "LionC/nest.nvim"
+    }
+
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup({})
+        end,
+    }
+
+    -- fuzzy
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("telescope").setup({})
+        end,
     }
 end)
 

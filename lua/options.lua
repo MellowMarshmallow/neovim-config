@@ -1,36 +1,43 @@
 local options = {
+    -- number
     number = true,
     relativenumber = true,
     numberwidth = 2,
+    wrap = false,
 
+    -- color
     termguicolors = true,
     guifont = "Consolas NF",
-
-    clipboard = 'unnamedplus',
-
-    mouse = 'a',
-
     cursorline = true,
 
+    -- copy-paste behavior
+    clipboard = 'unnamedplus',
+
+    -- buffer
     hidden = true,
 
+    -- indentation
     tabstop = 4,
     shiftwidth = 4,
     smartindent = true,
     expandtab = true,
     smarttab = true,
+    backspace = "indent,eol,start",
 
+    -- searching
     hlsearch = true,
     incsearch = true,
     ignorecase = true,
     smartcase = true,
 
-    backspace = "indent,eol,start",
-
+    -- split
     splitbelow = true,
     splitright = true,
 
+    -- window
     completeopt = "menuone,noselect",
+    pumheight = 10,
+    timeoutlen = 500,
 }
 
 for key, value in pairs(options) do
@@ -62,4 +69,6 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
+
+vim.g.mapleader = "<Space>"
 

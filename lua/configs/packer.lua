@@ -10,8 +10,22 @@ if not ok then
         })
     end
 
-    return require("packer")
-else
-    return packer
+    packer = require("packer")
 end
+
+packer.reset()
+
+packer.init({
+    display = {
+        open_fn = function()
+            return require("paccker.util").float({ border = "single" })
+        end,
+        prompt_border = "single",
+    },
+    profile = {
+        enable = true,
+    },
+})
+
+return packer
 
