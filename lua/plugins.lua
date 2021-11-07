@@ -2,17 +2,27 @@ local packer = require("configs.packer")
 
 packer.startup(function(use)
     -- self management
-    use { "wbthomason/packer.nvim" }
+    use {
+        "wbthomason/packer.nvim"
+    }
 
     -- color
     use {
         "nvim-treesitter/nvim-treesitter",
-        config = function() require("configs.treesitter") end,
+        event = "BufRead",
+        config = function()
+            require("configs.treesitter")
+        end,
+        run = ":TSUpdate",
     }
 
-    use { "projekt0n/github-nvim-theme" }
+    use {
+        "projekt0n/github-nvim-theme"
+    }
 
-    use { "folke/tokyonight.nvim" }
+    use {
+        "folke/tokyonight.nvim"
+    }
 
     -- file explorer
     use {
@@ -35,7 +45,9 @@ packer.startup(function(use)
     }
 
     -- lsp
-    use { "neovim/nvim-lspconfig" }
+    use {
+        "neovim/nvim-lspconfig"
+    }
 
     use {
         "williamboman/nvim-lsp-installer",

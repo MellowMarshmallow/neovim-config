@@ -1,7 +1,13 @@
--- require("github-theme").setup({
---     theme_style = "dark",
--- })
+local function github()
+    require("github-theme").setup({
+        theme_style = "dark",
+    })
+end
 
-vim.g.tokyonight_style = "storm" -- storm, night, day
-vim.cmd("colorscheme tokyonight")
+local function tokyonight()
+    vim.g.tokyonight_style = "storm" -- storm, night, day
+    vim.cmd("colorscheme tokyonight")
+end
+
+tokyonight()
 
